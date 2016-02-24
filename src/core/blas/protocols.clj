@@ -10,3 +10,10 @@ would often be a numeric base type)."
   (supports-blas? [c])
   (gemm! [c trans-a? trans-b? alpha a b beta])
   (gemv! [c trans-a? alpha a b beta]))
+
+
+(extend-protocol PBLASBase
+  Object
+  (supports-blas? [c] false)
+  (gemm! [c trans-a? trans-b? alpha a b beta] (throw (Exception. "Unimplemented")))
+  (gemv! [c trans-a? alpha a b beta] (throw (Exception. "Unimplemented"))))
