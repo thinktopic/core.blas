@@ -1,6 +1,11 @@
 (ns core.blas.protocols)
 
 
+(defmacro error
+  "Throws an error with the provided message(s)"
+  ([& vals]
+   `(throw (ex-info (str ~@vals) {}))))
+
 
 (defprotocol PBLASBase
   "Base blas support.  Note that the largest differences
@@ -13,7 +18,7 @@ would often be a numeric base type)."
 
 
 (extend-protocol PBLASBase
-  Object
+  #?(:clj Object :cljs object)
   (supports-blas? [c] false)
-  (gemm! [c trans-a? trans-b? alpha a b beta] (throw (Exception. "Unimplemented")))
-  (gemv! [c trans-a? alpha a b beta] (throw (Exception. "Unimplemented"))))
+  (gemm! [c trans-a? trans-b? alpha a b beta] (error "Unimplemented"))
+  (gemv! [c trans-a? alpha a b beta] (error "Unimplemented")))

@@ -1,4 +1,4 @@
-(defproject core.blas "1.0.1"
+(defproject core.blas "1.0.2"
   :description "BLAS interface protocols"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
